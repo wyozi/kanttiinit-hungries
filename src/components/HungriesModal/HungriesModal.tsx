@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import InputPanel from './InputPanel';
 import ChatPanel from './ChatPanel';
+import TutorialPanel from './TutorialPanel';
 
 const Container = styled.menu`
   margin: 0;
@@ -24,6 +25,7 @@ interface Props {}
 const HungriesModal = (props: Props & RouteComponentProps<any>) => {
   const preferences = React.useContext(preferenceContext);
   const hungries = React.useContext(hungriesContext);
+  const [tutorialDone, setTutorialDone] = React.useState(false);
 
   let component;
 
@@ -42,6 +44,8 @@ const HungriesModal = (props: Props & RouteComponentProps<any>) => {
     );
   } else if (hungries.state === 'SESSION') {
     component = <ChatPanel />;
+  } else if (!tutorialDone) {
+    component = <TutorialPanel finishTutorial={() => setTutorialDone(true)} />;
   } else {
     component = <InputPanel onSubmit={hungries.startMatching} />;
   }

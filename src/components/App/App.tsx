@@ -26,6 +26,7 @@ import HungriesModal from '../HungriesModal';
 import Settings from '../Settings';
 import TermsOfService from '../TermsOfService';
 import TopBar from '../TopBar';
+import HungriesFloater from '../HungriesFloater';
 
 const Container = styled.div`
   display: flex;
@@ -60,6 +61,7 @@ const App = () => {
           <div>
             <TopBar />
             <RestaurantList />
+            <HungriesFloater />
           </div>
           <Footer />
         </Container>

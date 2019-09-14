@@ -10,7 +10,7 @@ export interface HungriesContext {
 
 interface SessionStartPayload {
   name: string;
-  time: number;
+  time: 'NOW' | 'SOON';
 }
 
 const hungriesContext = React.createContext<HungriesContext>({} as any);

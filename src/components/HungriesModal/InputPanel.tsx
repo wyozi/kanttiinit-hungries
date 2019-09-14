@@ -43,8 +43,6 @@ export default (props: Props) => {
   const [name, nameProps] = useInput('');
   const [time, setTime] = React.useState('NOW');
 
-  const timeAsNumber = time === 'NOW' ? 0 : 15;
-
   return (
     <>
       <StyledForm>
@@ -58,8 +56,8 @@ export default (props: Props) => {
         <Item label={'Milloin?'}>
           <Radio
             options={[
-              { label: 'Nyt', value: 'NOW' },
-              { label: '15 minuutin päästä', value: '15' }
+              { label: 'Nyt (<5 min)', value: 'NOW' },
+              { label: 'Kohta (5-30 min)', value: 'SOON' }
             ]}
             selected={time}
             onChange={setTime}
@@ -76,7 +74,7 @@ export default (props: Props) => {
       <Button
         color="primary"
         onClick={() =>
-          props.onSubmit({ name: name as string, time: timeAsNumber })
+          props.onSubmit({ name: name as string, time: time as 'NOW' | 'SOON' })
         }
       >
         Start

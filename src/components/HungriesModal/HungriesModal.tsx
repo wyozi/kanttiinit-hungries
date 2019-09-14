@@ -39,6 +39,8 @@ const HungriesModal = (props: Props & RouteComponentProps<any>) => {
         <br />
       </MatchingSpinner>
     );
+  } else if (hungries.state === 'SESSION') {
+    component = <div>TODO add a chat</div>;
   } else {
     component = <InputPanel onSubmit={hungries.startMatching} />;
   }

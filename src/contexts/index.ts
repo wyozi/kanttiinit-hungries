@@ -1,4 +1,8 @@
 export { default as dataContext, DataContextProvider } from './dataContext';
+export {
+  default as hungriesContext,
+  HungriesContextProvider
+} from './hungriesContext';
 export { default as langContext, LangContextProvider } from './langContext';
 export { default as uiContext, UIStateProvider } from './uiContext';
 export {

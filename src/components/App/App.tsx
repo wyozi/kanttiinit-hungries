@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { DataContextProvider } from '../../contexts';
+import { DataContextProvider, HungriesContextProvider } from '../../contexts';
 import {
   preferenceContext,
   PreferenceContextProvider,
@@ -117,8 +117,10 @@ export default () => (
     <UIStateProvider>
       <PreferenceContextProvider>
         <DataContextProvider>
-          <App />
-          <SideEffects />
+          <HungriesContextProvider>
+            <App />
+            <SideEffects />
+          </HungriesContextProvider>
         </DataContextProvider>
       </PreferenceContextProvider>
     </UIStateProvider>

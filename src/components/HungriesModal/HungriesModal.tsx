@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import { MdDirectionsWalk, MdStar } from 'react-icons/md';
-import { dataContext, preferenceContext } from '../../contexts';
+import { hungriesContext } from '../../contexts';
 import { AreaType } from '../../contexts/types';
 import { useTranslations } from '../../utils/hooks';
 import allTranslations from '../../utils/translations';
@@ -25,10 +25,18 @@ interface Props {}
 
 const HungriesModal = (props: Props & RouteComponentProps<any>) => {
   const translations = useTranslations();
-  const data = React.useContext(dataContext);
-  const preferences = React.useContext(preferenceContext);
+  const hungries = React.useContext(hungriesContext);
 
-  return <Container>TODO</Container>;
+  return (
+    <Container>
+      <div>TODO whatever</div>
+      <Button
+        onClick={() => hungries.startMatching({ name: 'name', time: 10 })}
+      >
+        Start
+      </Button>
+    </Container>
+  );
 };
 
 export default withRouter(HungriesModal);

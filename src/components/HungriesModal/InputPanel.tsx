@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { HungriesContext } from '../../contexts/hungriesContext';
 import { useTranslations } from '../../utils/hooks';
 import allTranslations from '../../utils/translations';
-import Button from '../Button';
+import Button from '@material-ui/core/Button';
 import Radio from '../Radio';
 import TextField from '@material-ui/core/TextField';
 import useInput from '../../utils/useInput';
@@ -42,43 +42,59 @@ export default (props: Props) => {
   const translations = useTranslations();
   const [name, nameProps] = useInput('');
   const [time, setTime] = React.useState('NOW');
+  const [lang, setLang] = React.useState('FIN');
 
   return (
-    <>
-      <StyledForm>
-        <TextField
-          label={'Name'}
-          style={{ margin: 4 }}
-          fullWidth
-          type="text"
-          {...nameProps}
+    <StyledForm>
+      <TextField
+        label="Nimi"
+        style={{ margin: 4 }}
+        fullWidth
+        type="text"
+        {...nameProps}
+      />
+      <Item label={'Milloin?'}>
+        <Radio
+          options={[
+            { label: 'Nyt (<5 min)', value: 'NOW' },
+            { label: 'Kohta (5-30 min)', value: 'SOON' }
+          ]}
+          selected={time}
+          onChange={setTime}
         />
-        <Item label={'Milloin?'}>
-          <Radio
-            options={[
-              { label: 'Nyt (<5 min)', value: 'NOW' },
-              { label: 'Kohta (5-30 min)', value: 'SOON' }
-            ]}
-            selected={time}
-            onChange={setTime}
-          />
-        </Item>
-        <Item label={'Missä?'}>
-          <Radio
-            options={[{ label: 'Otaniemi', value: 'Otaniemi' }]}
-            selected={'Otaniemi'}
-            onChange={() => {}}
-          />
-        </Item>
-      </StyledForm>
+      </Item>
+      <Item label={'Kieli?'}>
+        <Radio
+          options={[
+            { label: 'Suomi', value: 'FIN' },
+            { label: 'Englanti', value: 'ENG' },
+            { label: 'Suomi / Englanti', value: 'FINENG' }
+          ]}
+          selected={lang}
+          onChange={setLang}
+        />
+      </Item>
+      <Item label={'Missä?'}>
+        <Radio
+          options={[{ label: 'Otaniemi', value: 'Otaniemi' }]}
+          selected={'Otaniemi'}
+          onChange={() => {}}
+        />
+      </Item>
       <Button
+        type="submit"
         color="primary"
+        variant="outlined"
         onClick={() =>
-          props.onSubmit({ name: name as string, time: time as 'NOW' | 'SOON' })
+          props.onSubmit({
+            name: name as string,
+            time: time as 'NOW' | 'SOON'
+          })
         }
+        style={{ marginTop: 25 }}
       >
-        Start
+        Aloita haku
       </Button>
-    </>
+    </StyledForm>
   );
 };

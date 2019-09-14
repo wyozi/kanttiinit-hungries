@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import InputPanel from './InputPanel';
+import ChatPanel from './ChatPanel';
 
 const Container = styled.menu`
   margin: 0;
@@ -40,7 +41,7 @@ const HungriesModal = (props: Props & RouteComponentProps<any>) => {
       </MatchingSpinner>
     );
   } else if (hungries.state === 'SESSION') {
-    component = <div>TODO add a chat</div>;
+    component = <ChatPanel />;
   } else {
     component = <InputPanel onSubmit={hungries.startMatching} />;
   }

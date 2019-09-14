@@ -3,7 +3,7 @@ import * as io from 'socket.io-client';
 
 type State = 'MATCHING' | 'SESSION' | null;
 
-interface HungriesContext {
+export interface HungriesContext {
   state: State;
   startMatching: (payload: SessionStartPayload) => Promise<void>;
 }
@@ -23,7 +23,7 @@ export const HungriesContextProvider = (props: {
 
   const startMatching = React.useCallback(
     async (payload: SessionStartPayload) => {
-      const socket = io('todo url');
+      const socket = io('http://hungrie.herokuapp.com/');
       socket.emit('session', payload);
 
       setClient(socket);
@@ -37,7 +37,7 @@ export const HungriesContextProvider = (props: {
       startMatching,
       state
     }),
-    []
+    [state]
   );
 
   return (

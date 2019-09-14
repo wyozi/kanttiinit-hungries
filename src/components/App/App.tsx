@@ -22,6 +22,7 @@ import NotFound from '../NotFound';
 import ReportModal from '../ReportModal';
 import RestaurantList from '../RestaurantList';
 import RestaurantModal from '../RestaurantModal';
+import HungriesModal from '../HungriesModal';
 import Settings from '../Settings';
 import TermsOfService from '../TermsOfService';
 import TopBar from '../TopBar';
@@ -96,6 +97,9 @@ const App = () => {
                 {({ match }: any) => (
                   <ReportModal restaurantId={match.params.restaurantId} />
                 )}
+              </Route>
+              <Route path="/hungries">
+                {({ match }: any) => <HungriesModal />}
               </Route>
               <Route path="*">
                 <NotFound />
